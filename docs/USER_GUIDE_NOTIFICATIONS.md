@@ -116,6 +116,9 @@ After adding channels, you can configure which events trigger notifications:
 | Backup Completed | When a backup completes successfully | System |
 | Backup Failed | When a backup fails | System |
 | Medication Reminder | When it is time to take a scheduled medication | Medical |
+| Upcoming Appointment | Before a scheduled appointment, at the lead times set on it | Medical |
+| Prescription Expiring | When an unused prescription is about to expire | Medical |
+| Payment Due | When an unpaid healthcare payment is coming due | Medical |
 | Lab Results Available | When new lab results are added | Medical |
 | Abnormal Lab Results | When lab results are outside normal range | Medical |
 | Immunization Due | When an immunization is coming due | Medical |
@@ -145,6 +148,24 @@ with a red alert icon, and saving the medication shows a warning notification
 with the reasons. The warnings are informational; they do not block saving.
 
 Use the **Send test reminder now** button on the Reminders tab to verify the notification path without waiting for the schedule. The test bypasses the normal idempotency check and never blocks a real scheduled reminder.
+
+### Appointment, Prescription and Payment Reminders
+
+Appointments, prescriptions and payments each have a **Reminders** tab:
+
+- **Appointments**: pick one or more lead times (for example 7 days, 1 day
+  and 2 hours before). New appointments start with these three. A reminder is
+  sent while the appointment is *scheduled* or *confirmed*; lead times that
+  had already passed when you created the appointment are skipped. If you
+  change the date or time, the reminders are sent again for the new time.
+- **Prescriptions**: pick how many days before the expiry date to be warned
+  (default 7 and 1). Only prescriptions marked *not used yet* are reminded.
+- **Payments**: pick how many days before the due date to be warned
+  (default 3 and 1). Only payments marked *to pay* are reminded.
+
+Prescription and payment reminders go out once a day, from 08:00 facility
+time. Like medication reminders, they are delivered to the **patient
+owner's** channels enabled for the matching event in the matrix above.
 
 ## Testing Channels
 

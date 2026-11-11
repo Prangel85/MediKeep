@@ -1757,5 +1757,237 @@
       "followUpInstructions": "Instrucciones de Seguimiento",
       "priority": "Prioridad"
     }
+  },
+  "scheduling": {
+    "appointmentStatus": {
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "confirmed": "Confirmed",
+      "scheduled": "Scheduled"
+    },
+    "appointmentType": {
+      "exam": "Diagnostic exam",
+      "follow_up": "Follow-up",
+      "lab_test": "Lab test",
+      "other": "Other",
+      "procedure": "Procedure",
+      "telehealth": "Telehealth",
+      "therapy": "Therapy session",
+      "vaccination": "Vaccination",
+      "visit": "Visit"
+    },
+    "appointments": {
+      "add": "+ Add Appointment",
+      "addFirst": "Add Your First Appointment",
+      "addTitle": "Add Appointment",
+      "chooseVisit": "Visit",
+      "completeFailed": "Could not mark the appointment as completed",
+      "completeHelp": "The appointment is recorded in your visit history.",
+      "completeTitle": "Mark appointment as completed",
+      "completed": "Appointment recorded in your visit history",
+      "createVisit": "Create a new visit from this appointment",
+      "editTitle": "Edit Appointment",
+      "linkVisit": "Link a visit I already recorded",
+      "linkedVisit": "Recorded as a visit:",
+      "loading": "Loading appointments...",
+      "locationPlaceholder": "e.g., Hospital, building B, floor 2",
+      "markCompleted": "Mark as completed",
+      "noneFound": "No Appointments Found",
+      "notesPlaceholder": "What to bring, preparation, questions to ask...",
+      "openVisit": "open visit",
+      "save": "Save Appointment",
+      "saving": "Saving appointment...",
+      "startAdding": "Add your upcoming visits and exams to get reminders.",
+      "title": "Appointments",
+      "titlePlaceholder": "e.g., Cardiology check-up, Blood tests",
+      "update": "Update Appointment",
+      "visitNotes": "Visit notes (optional)"
+    },
+    "dashboard": {
+      "due": "{{amount}} - due {{date}}",
+      "empty": "No appointments, expiring prescriptions or payments due in the next 30 days.",
+      "expires": "Expires {{date}}",
+      "more_one": "+{{count}} more",
+      "more_other": "+{{count}} more",
+      "overdue": "{{amount}} - overdue since {{date}}",
+      "title": "Upcoming",
+      "viewAll": "View appointments"
+    },
+    "daysBefore_one": "{{count}} day before",
+    "daysBefore_other": "{{count}} days before",
+    "due": {
+      "inDays_one": "Due in {{count}} day",
+      "inDays_other": "Due in {{count}} days",
+      "overdue": "Overdue",
+      "today": "Due today"
+    },
+    "entityNames": {
+      "appointment": "appointment",
+      "payment": "payment",
+      "prescription": "prescription"
+    },
+    "expiry": {
+      "expired": "Expired",
+      "inDays_one": "Expires in {{count}} day",
+      "inDays_other": "Expires in {{count}} days",
+      "today": "Expires today"
+    },
+    "fields": {
+      "amount": "Amount",
+      "appointment": "Appointment",
+      "appointmentType": "Type",
+      "currency": "Currency",
+      "date": "Date",
+      "dateTime": "Date and time",
+      "description": "Description",
+      "dueDate": "Due date",
+      "duration": "Duration",
+      "durationMinutes": "Duration (min)",
+      "exemptionCode": "Exemption",
+      "expiryDate": "Expires",
+      "issuedDate": "Issued",
+      "items": "Items",
+      "location": "Location",
+      "medication": "Medication",
+      "paidDate": "Paid on",
+      "payee": "Paid to",
+      "paymentMethod": "Method",
+      "paymentType": "Type",
+      "practice": "Practice",
+      "practitioner": "Practitioner",
+      "prescriber": "Prescribed by",
+      "prescription": "Prescription",
+      "prescriptionNumber": "Number",
+      "prescriptionType": "Type",
+      "priority": "Priority",
+      "referenceNumber": "Receipt / invoice number",
+      "status": "Status",
+      "taxDeductible": "Tax deductible",
+      "time": "Time",
+      "title": "Title",
+      "usedDate": "Used on"
+    },
+    "filters": {
+      "allStatuses": "All Statuses",
+      "allTypes": "All Types"
+    },
+    "items": {
+      "add": "Add item",
+      "code": "Code",
+      "description": "Description",
+      "empty": "No items yet. Add the medications, exams or visits prescribed.",
+      "quantity": "Qty",
+      "remove": "Remove item"
+    },
+    "leadTime": {
+      "days_one": "{{count}} day",
+      "days_other": "{{count}} days",
+      "hours_one": "{{count}} hour",
+      "hours_other": "{{count}} hours",
+      "minutes_one": "{{count}} minute",
+      "minutes_other": "{{count}} minutes"
+    },
+    "minutesShort_one": "{{count}} min",
+    "minutesShort_other": "{{count}} min",
+    "paymentMethod": {
+      "bank_transfer": "Bank transfer",
+      "card": "Card",
+      "cash": "Cash",
+      "online": "Online",
+      "other": "Other"
+    },
+    "paymentStatus": {
+      "cancelled": "Cancelled",
+      "due": "To pay",
+      "paid": "Paid"
+    },
+    "paymentType": {
+      "copay": "Copay",
+      "insurance": "Insurance",
+      "intramural": "Private in public facility",
+      "other": "Other",
+      "pharmacy": "Pharmacy",
+      "private": "Private"
+    },
+    "payments": {
+      "add": "+ Add Payment",
+      "addFirst": "Add Your First Payment",
+      "addTitle": "Add Payment",
+      "allYears": "All years",
+      "descriptionPlaceholder": "e.g., Copay for blood tests, Physiotherapy session",
+      "editTitle": "Edit Payment",
+      "loading": "Loading payments...",
+      "noneFound": "No Payments Found",
+      "payeeHelp": "If not a saved practice (pharmacy, lab, ...)",
+      "receipts": "Receipts",
+      "remindersHelp": "Sent before the due date while the payment is still to pay.",
+      "save": "Save Payment",
+      "saving": "Saving payment...",
+      "startAdding": "Track copays and medical expenses, with receipts and due-date reminders.",
+      "summary": "Summary",
+      "title": "Payments",
+      "totalDeductible": "Tax deductible (paid)",
+      "totalDue": "To pay",
+      "totalPaid": "Paid",
+      "update": "Update Payment",
+      "year": "Year"
+    },
+    "prescriptionStatus": {
+      "active": "Not used yet",
+      "cancelled": "Cancelled",
+      "expired": "Expired",
+      "used": "Used"
+    },
+    "prescriptionType": {
+      "device": "Medical device",
+      "exam": "Exam / lab test",
+      "medication": "Medication",
+      "other": "Other",
+      "referral": "Specialist referral",
+      "therapy": "Therapy"
+    },
+    "prescriptions": {
+      "add": "+ Add Prescription",
+      "addFirst": "Add Your First Prescription",
+      "addTitle": "Add Prescription",
+      "editTitle": "Edit Prescription",
+      "loading": "Loading prescriptions...",
+      "noneFound": "No Prescriptions Found",
+      "numberHelp": "Identifier printed on the prescription",
+      "remindersHelp": "Sent before the expiry date while the prescription is not used yet.",
+      "save": "Save Prescription",
+      "saving": "Saving prescription...",
+      "startAdding": "Add your prescriptions and referrals to be warned before they expire.",
+      "title": "Prescriptions",
+      "titlePlaceholder": "e.g., Blood tests, Cardiology referral",
+      "update": "Update Prescription"
+    },
+    "priority": {
+      "B": "B - Short (within 10 days)",
+      "D": "D - Deferrable (30 days visits / 60 days exams)",
+      "P": "P - Planned (within 120 days)",
+      "U": "U - Urgent (within 72 hours)"
+    },
+    "reminders": {
+      "enabled": "Send reminders",
+      "help": "Reminders are sent through the notification channels set up in Settings > Notifications.",
+      "none": "No reminders",
+      "pick": "Pick one or more",
+      "when": "When to remind"
+    },
+    "tabs": {
+      "details": "Details",
+      "items": "Items",
+      "reminders": "Reminders"
+    },
+    "validation": {
+      "amount": "Enter a valid amount",
+      "currency": "3-letter code, e.g. EUR",
+      "dateTimeRequired": "Date and time are required",
+      "descriptionRequired": "Description is required",
+      "expiryBeforeIssue": "Expiry date cannot be before the issue date",
+      "issuedDateRequired": "Issue date is required",
+      "titleRequired": "Title is required"
+    }
   }
 }

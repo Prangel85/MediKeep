@@ -3873,6 +3873,216 @@ check when the patient may donate again.
 - **Error Responses**:
   - `404`: Blood donation not found
 
+### 6.15 Appointments
+
+Base path: `/api/v1/appointments`
+
+**Purpose**: Upcoming (or past, not yet recorded) visits, exams and other
+appointments, with reminder lead times. Completing an appointment records it
+as a visit (Encounter).
+
+**Statuses**: `scheduled`, `confirmed`, `completed`, `cancelled`
+**Types**: `visit`, `follow_up`, `exam`, `lab_test`, `procedure`, `therapy`, `vaccination`, `telehealth`, `other`
+
+##### Create Appointment
+
+`POST /appointments/`
+
+```json
+{
+  "patient_id": 1,
+  "title": "Cardiology check-up",
+  "appointment_type": "visit",
+  "scheduled_at": "2030-03-11T10:00:00",
+  "duration_minutes": 30,
+  "location": "City Hospital, building B",
+  "status": "scheduled",
+  "practitioner_id": 4,
+  "practice_id": 2,
+  "reminder_enabled": true,
+  "reminder_offsets_minutes": [10080, 1440, 120],
+  "notes": "Bring previous ECG",
+  "tags": ["cardio"]
+}
+```
+
+- **Required fields**: `patient_id`, `title`, `scheduled_at`
+- **Validation**:
+  - `scheduled_at`: a value without offset is read as facility local time
+    (`TZ`); values with `Z` or an offset are converted. Stored as UTC and
+    returned with an explicit `+00:00` offset.
+  - `title`: 2-200 characters; `location`: max 300; `notes`: max 5000
+  - `duration_minutes`: 1-1440
+  - `reminder_offsets_minutes`: up to 10 whole minutes between 1 and 86400
+    (60 days), de-duplicated and returned longest first. Default
+    `[10080, 1440, 120]` (7 days, 1 day, 2 hours).
+- **Success Response** (200): Appointment object, including `id`,
+  `encounter_id` (set once completed), `created_at`, `updated_at`
+
+##### List Appointments
+
+`GET /appointments/?status=&start=&end=&tags=&tag_match_all=`
+
+Soonest first. `start`/`end` filter `scheduled_at` (inclusive).
+
+##### Upcoming Appointments
+
+`GET /appointments/upcoming?days=30&limit=20`
+
+Scheduled or confirmed appointments from now to `days` ahead (1-366), soonest first.
+
+##### Complete Appointment
+
+`POST /appointments/{id}/complete`
+
+```json
+{ "encounter_id": 12 }
+```
+
+or, to create a new visit from the appointment (title, practitioner, location,
+duration; dated on the appointment day, or today if completed early):
+
+```json
+{ "notes": "All fine" }
+```
+
+- Sets `status` to `completed` and `encounter_id`.
+- **Errors**: `404` if the appointment or the encounter is missing or belongs
+  to another patient; `409` if the appointment is already linked to a visit;
+  `400` if it is cancelled.
+
+##### Get / Update / Delete Appointment
+
+`GET /appointments/{id}`, `PUT /appointments/{id}` (partial; required fields
+cannot be set to `null`), `DELETE /appointments/{id}` (a linked visit is kept).
+
+### 6.16 Prescriptions
+
+Base path: `/api/v1/prescriptions`
+
+**Purpose**: Prescriptions and referrals, with warnings before an unused one
+expires. Fields are generic; country-specific concepts map onto them (e.g.
+Italy: NRE → `prescription_number`, priority class U/B/D/P → `priority`,
+exemption → `exemption_code`).
+
+**Statuses**: `active` (not used yet), `used`, `expired`, `cancelled`
+**Types**: `medication`, `exam`, `referral`, `therapy`, `device`, `other`
+
+##### Create Prescription
+
+`POST /prescriptions/`
+
+```json
+{
+  "patient_id": 1,
+  "title": "Blood tests",
+  "prescription_type": "exam",
+  "prescription_number": "1500A4001234567",
+  "issued_date": "2030-01-10",
+  "expiry_date": "2030-07-10",
+  "priority": "D",
+  "exemption_code": "048",
+  "items": [
+    {"description": "Complete blood count", "code": "90.62.2", "quantity": 1}
+  ],
+  "practitioner_id": 4,
+  "appointment_id": 7,
+  "medication_id": null,
+  "reminder_enabled": true,
+  "expiry_reminder_days": [7, 1]
+}
+```
+
+- **Required fields**: `patient_id`, `title`, `prescription_type`, `issued_date`
+- **Validation**:
+  - `issued_date` and `used_date` cannot be in the future; `expiry_date` and
+    `used_date` cannot precede `issued_date` (also checked against stored
+    values on partial updates)
+  - `items`: up to 50; `description` required (max 300), `code` max 50,
+    `quantity` 1-999
+  - `expiry_reminder_days`: up to 10 values between 1 and 365, default `[7, 1]`
+  - `appointment_id` / `medication_id` must belong to the same patient (`404` otherwise)
+  - Setting `status` to `used` without `used_date` records today
+- **Success Response** (200): Prescription object
+
+##### List / Expiring
+
+`GET /prescriptions/?status=&prescription_type=&appointment_id=&tags=` (newest issue date first)
+
+`GET /prescriptions/expiring?days=30`: active prescriptions expiring between today and `days` ahead.
+
+##### Get / Update / Delete Prescription
+
+`GET`, `PUT` (partial), `DELETE` on `/prescriptions/{id}`.
+
+### 6.17 Payments
+
+Base path: `/api/v1/payments`
+
+**Purpose**: Healthcare expenses (copay, private, intramural, insurance,
+pharmacy, other) with due dates, payment status and receipts. Receipts are
+attached with the entity file endpoints using entity type `payment`
+(`/api/v1/entity-files/payment/{id}/files`).
+
+**Statuses**: `due`, `paid`, `cancelled`
+**Methods**: `cash`, `card`, `bank_transfer`, `online`, `other`
+
+##### Create Payment
+
+`POST /payments/`
+
+```json
+{
+  "patient_id": 1,
+  "description": "Copay for blood tests",
+  "amount": "36.15",
+  "currency": "EUR",
+  "payment_type": "copay",
+  "status": "paid",
+  "due_date": null,
+  "paid_date": "2030-01-12",
+  "payment_method": "card",
+  "reference_number": "R-2030-001",
+  "payee": null,
+  "practice_id": 2,
+  "tax_deductible": true,
+  "prescription_id": 3,
+  "appointment_id": null,
+  "reminder_enabled": true,
+  "due_reminder_days": [3, 1]
+}
+```
+
+- **Required fields**: `patient_id`, `description`, `amount`, `currency`, `payment_type`
+- **Validation**:
+  - `amount`: 0 to 99,999,999.99, at most 2 decimals; returned as a JSON number
+  - `currency`: 3-letter ISO 4217 code, upper-cased
+  - `paid_date` cannot be in the future; setting `status` to `paid` without `paid_date` records today
+  - `appointment_id` / `prescription_id` must belong to the same patient
+  - `due_reminder_days`: up to 10 values between 1 and 365, default `[3, 1]`
+
+##### List / Due / Summary
+
+`GET /payments/?status=&payment_type=&appointment_id=&prescription_id=&tax_deductible=&tags=`
+
+`GET /payments/due?days=30`: unpaid payments due within `days`, overdue ones included, soonest first.
+
+`GET /payments/summary?year=2030`: totals per currency (cancelled payments excluded):
+
+```json
+[
+  {"currency": "EUR", "total_paid": 150.5, "total_due": 20.0,
+   "total_tax_deductible_paid": 100.0, "count": 3}
+]
+```
+
+With `year`, paid amounts count by `paid_date` and unpaid ones by `due_date`.
+
+##### Get / Update / Delete Payment
+
+`GET`, `PUT` (partial), `DELETE` on `/payments/{id}`.
+
+
 ---
 
 ## 7. Related Information

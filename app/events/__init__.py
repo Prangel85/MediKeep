@@ -24,6 +24,11 @@ from app.events.collaboration_events import (
     ShareRevokedEvent,
 )
 from app.events.medication_events import MedicationReminderDueEvent
+from app.events.scheduling_events import (
+    AppointmentUpcomingEvent,
+    PaymentDueEvent,
+    PrescriptionExpiringEvent,
+)
 from app.events.security_events import (
     BackupCodeUsedEvent,
     PasswordChangedEvent,
@@ -48,4 +53,7 @@ __all__ = [
     "TwoFactorFailuresEvent",
     # Medical Events
     "MedicationReminderDueEvent",
+    "AppointmentUpcomingEvent",
+    "PrescriptionExpiringEvent",
+    "PaymentDueEvent",
 ]

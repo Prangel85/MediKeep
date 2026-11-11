@@ -30,6 +30,9 @@ const ENTITY_TO_ROUTE_MAP = {
   [ENTITY_TYPES.FAMILY_MEMBER]: '/family-history',
   [ENTITY_TYPES.MEDICAL_EQUIPMENT]: '/medical-equipment',
   [ENTITY_TYPES.BLOOD_DONATION]: '/blood-donations',
+  [ENTITY_TYPES.APPOINTMENT]: '/appointments',
+  [ENTITY_TYPES.PRESCRIPTION]: '/prescriptions',
+  [ENTITY_TYPES.PAYMENT]: '/payments',
 };
 
 /**

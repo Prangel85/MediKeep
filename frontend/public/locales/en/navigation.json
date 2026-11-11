@@ -85,6 +85,7 @@
     "items": {
       "adminDashboard": "Admin Dashboard",
       "allergies": "Allergies",
+      "appointments": "Appointments",
       "backupManagement": "Backup Management",
       "bloodDonations": "Blood Donations",
       "conditions": "Conditions",
@@ -101,8 +102,10 @@
       "medicalEquipment": "Medical Equipment",
       "medications": "Medications",
       "patientInfo": "Patient Info",
+      "payments": "Payments",
       "pharmacies": "Pharmacies",
       "practitioners": "Practitioners",
+      "prescriptions": "Prescriptions",
       "procedures": "Procedures",
       "settings": "Settings",
       "symptoms": "Symptoms",

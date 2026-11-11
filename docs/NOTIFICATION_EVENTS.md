@@ -137,11 +137,15 @@ app/
 │   ├── __init__.py          # Exports all events
 │   ├── backup_events.py     # BackupCompletedEvent, BackupFailedEvent
 │   ├── collaboration_events.py  # Invitation/sharing events
+│   ├── medication_events.py # MedicationReminderDueEvent
+│   ├── scheduling_events.py # Appointment / prescription / payment reminders
 │   └── security_events.py   # PasswordChangedEvent
 │
 └── services/
     ├── notification_handlers.py   # Subscribes to events
-    └── notification_templates.py  # Message templates
+    ├── notification_templates.py  # Message templates
+    ├── scheduling_notification_templates.py  # Templates for scheduling events
+    └── scheduling_reminder_scheduler.py      # Publishes scheduling reminders
 ```
 
 ### Components
@@ -194,6 +198,39 @@ title, message = registry.get_template("event_type", data)
 | `sessions_revoked` | security | The user signed out their other devices |
 | `two_factor_failures` | security | The correct password was followed by enough wrong codes to lock the code step |
 | `medication_reminder_due` | medical | A scheduled medication reminder time has arrived (fired by the per-minute `MedicationReminderSchedulerService`; idempotent via `NotificationHistory` dedup) |
+| `appointment_upcoming` | medical | A reminder lead time of a scheduled or confirmed appointment was reached (`offset_minutes`, `scheduled_at_local`) |
+| `prescription_expiring` | medical | An unused (active) prescription is `days_before` days from its `expiry_date` |
+| `payment_due` | medical | An unpaid payment is `days_before` days from its `due_date` (`amount`, `currency`) |
+
+### Scheduling reminders
+
+`appointment_upcoming`, `prescription_expiring` and `payment_due` are published
+by `SchedulingReminderSchedulerService`
+(`app/services/scheduling_reminder_scheduler.py`), started and stopped with
+the app next to the medication reminder scheduler. It runs in the facility
+timezone (`TZ`) and sends each notification to the **patient owner**.
+
+| Event | Checked | Sent when | Idempotency key (in `NotificationHistory.event_data`) |
+|-------|---------|-----------|------------------------------------------------------|
+| `appointment_upcoming` | every minute | `scheduled_at - offset` has passed by less than 30 minutes and the appointment has not started; one reminder per lead time in `reminder_offsets_minutes` (default 7 days, 1 day, 2 hours) | `appointment_id`, `offset_minutes`, `scheduled_at_utc` |
+| `prescription_expiring` | hourly, from 08:00 | today is one of `expiry_reminder_days` (default 7 and 1) before `expiry_date`, status `active` | `prescription_id`, `days_before`, `expiry_date` |
+| `payment_due` | hourly, from 08:00 | today is one of `due_reminder_days` (default 3 and 1) before `due_date`, status `due` | `payment_id`, `days_before`, `due_date` |
+
+Notes:
+
+- Reminders can be turned off per record (`reminder_enabled`).
+- The 30-minute grace window lets a reminder survive a restart, while lead
+  times that had already passed when the appointment was created are skipped
+  (no "7 days before" message for an appointment booked 2 days ahead).
+- Rescheduling an appointment changes `scheduled_at_utc`, so its reminders
+  are sent again for the new time.
+- The daily checks run hourly instead of once, so downtime at 08:00 does not
+  skip a day.
+- Besides `NotificationHistory`, the scheduler remembers what it published in
+  memory, so owners without an enabled channel (no history row is written
+  for them) are not processed again every tick.
+- Logs contain only IDs, lead times and dates, never titles, descriptions or
+  amounts.
 
 ---
 

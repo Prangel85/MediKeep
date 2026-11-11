@@ -185,6 +185,10 @@
   "description": "Configure how you receive notifications for important events",
   "error": "Failed to load notification settings",
   "events": {
+    "appointment_upcoming": {
+      "description": "Reminder before a scheduled appointment, at the lead times set on it",
+      "name": "Upcoming Appointment"
+    },
     "backup_code_used": {
       "description": "When a backup code is used to sign in to your account",
       "name": "Backup Code Used"
@@ -232,6 +236,14 @@
     "password_changed": {
       "description": "When your password is changed",
       "name": "Password Changed"
+    },
+    "payment_due": {
+      "description": "When an unpaid healthcare payment is coming due",
+      "name": "Payment Due"
+    },
+    "prescription_expiring": {
+      "description": "When an unused prescription is about to expire",
+      "name": "Prescription Expiring"
     },
     "sessions_revoked": {
       "description": "When your other devices are signed out",

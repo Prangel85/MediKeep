@@ -252,6 +252,18 @@
     "two_factor_failures": {
       "description": "当您的密码正确但两步验证码错误次数过多时",
       "name": "多次输入错误验证码"
+    },
+    "appointment_upcoming": {
+      "description": "Reminder before a scheduled appointment, at the lead times set on it",
+      "name": "Upcoming Appointment"
+    },
+    "payment_due": {
+      "description": "When an unpaid healthcare payment is coming due",
+      "name": "Payment Due"
+    },
+    "prescription_expiring": {
+      "description": "When an unused prescription is about to expire",
+      "name": "Prescription Expiring"
     }
   },
   "history": {

@@ -85,6 +85,7 @@ from .reporting import (
     ReportGenerationAudit,
     ReportTemplate,
 )
+from .scheduling import Appointment, Payment, Prescription
 from .sharing import (
     FamilyHistoryShare,
     Invitation,
@@ -123,6 +124,9 @@ __all__ = [
     "Allergy",
     "Vitals",
     "BloodDonation",
+    "Appointment",
+    "Prescription",
+    "Payment",
     "Symptom",
     "SymptomOccurrence",
     "LabResult",

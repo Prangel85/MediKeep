@@ -963,6 +963,92 @@ JUNCTION TABLES (Many-to-Many)
   from `user_preferences.blood_donation_intervals` (defaults: whole_blood 56, plasma 14,
   platelets 14, double_red_cells 112 days)
 
+### appointments
+**Purpose**: Scheduled appointments (visits, exams, lab tests, therapy sessions...) with reminder lead times. Migration `scheduling_add_appointments`.
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | Integer | PRIMARY KEY | Unique appointment ID |
+| patient_id | Integer | FK(patients.id, ON DELETE CASCADE), NOT NULL | Associated patient |
+| practitioner_id | Integer | FK(practitioners.id, ON DELETE SET NULL) | Practitioner |
+| practice_id | Integer | FK(practices.id, ON DELETE SET NULL) | Practice / facility |
+| encounter_id | Integer | FK(encounters.id, ON DELETE SET NULL) | Visit recorded when completed |
+| title | String(200) | NOT NULL | What the appointment is for |
+| appointment_type | String(50) | | AppointmentType value |
+| scheduled_at | DateTime | NOT NULL | Date and time (UTC) |
+| duration_minutes | Integer | | Expected duration |
+| location | String(300) | | Where |
+| status | String(20) | NOT NULL, DEFAULT 'scheduled' | scheduled, confirmed, completed, cancelled |
+| notes | Text | | Notes |
+| reminder_enabled | Boolean | NOT NULL, DEFAULT true | Send reminders |
+| reminder_offsets_minutes | JSON | | Lead times in minutes (default [10080, 1440, 120]) |
+| tags | JSON | DEFAULT [] | User tags |
+| created_at / updated_at | DateTime | NOT NULL | Audit timestamps |
+
+**Indexes**: `idx_appointments_patient_scheduled` (patient_id, scheduled_at), `idx_appointments_status_scheduled` (status, scheduled_at), `idx_appointments_encounter_id`
+
+**Business Rules**:
+- Completing an appointment sets `status = completed` and links an existing encounter of the same patient or creates one
+- Reminders (`appointment_upcoming`) are sent only while scheduled or confirmed
+
+### prescriptions
+**Purpose**: Prescriptions and referrals with expiry tracking. Generic fields; country-specific concepts map onto them (Italian NRE → `prescription_number`, U/B/D/P → `priority`, exemption → `exemption_code`). Migration `scheduling_add_prescriptions`.
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | Integer | PRIMARY KEY | Unique prescription ID |
+| patient_id | Integer | FK(patients.id, ON DELETE CASCADE), NOT NULL | Associated patient |
+| practitioner_id | Integer | FK(practitioners.id, ON DELETE SET NULL) | Prescriber |
+| appointment_id | Integer | FK(appointments.id, ON DELETE SET NULL) | Related appointment |
+| medication_id | Integer | FK(medications.id, ON DELETE SET NULL) | Related medication |
+| prescription_number | String(100) | | Prescription identifier |
+| prescription_type | String(30) | NOT NULL | medication, exam, referral, therapy, device, other |
+| title | String(200) | NOT NULL | Short description |
+| issued_date | Date | NOT NULL | Issue date |
+| expiry_date | Date | | Expiry date |
+| priority | String(30) | | Priority class (free text) |
+| exemption_code | String(50) | | Exemption code |
+| items | JSON | | `[{description, code, quantity}]` |
+| status | String(20) | NOT NULL, DEFAULT 'active' | active (not used yet), used, expired, cancelled |
+| used_date | Date | | When it was used |
+| notes | Text | | Notes |
+| reminder_enabled | Boolean | NOT NULL, DEFAULT true | Send expiry warnings |
+| expiry_reminder_days | JSON | | Days before expiry (default [7, 1]) |
+| tags | JSON | DEFAULT [] | User tags |
+| created_at / updated_at | DateTime | NOT NULL | Audit timestamps |
+
+**Indexes**: `idx_prescriptions_patient_issued` (patient_id, issued_date), `idx_prescriptions_status_expiry` (status, expiry_date), `idx_prescriptions_appointment_id`
+
+### payments
+**Purpose**: Healthcare expenses with due dates and receipts (entity files with entity_type `payment`). Migration `scheduling_add_payments`.
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | Integer | PRIMARY KEY | Unique payment ID |
+| patient_id | Integer | FK(patients.id, ON DELETE CASCADE), NOT NULL | Associated patient |
+| appointment_id | Integer | FK(appointments.id, ON DELETE SET NULL) | Related appointment |
+| prescription_id | Integer | FK(prescriptions.id, ON DELETE SET NULL) | Related prescription |
+| practice_id | Integer | FK(practices.id, ON DELETE SET NULL) | Payee, when a saved practice |
+| payee | String(200) | | Payee, free text |
+| description | String(200) | NOT NULL | What was paid |
+| amount | Numeric(10, 2) | NOT NULL | Amount |
+| currency | String(3) | NOT NULL | ISO 4217 code |
+| payment_type | String(30) | NOT NULL | copay, private, intramural, insurance, pharmacy, other |
+| status | String(20) | NOT NULL, DEFAULT 'due' | due, paid, cancelled |
+| due_date | Date | | Due date |
+| paid_date | Date | | Payment date |
+| payment_method | String(30) | | cash, card, bank_transfer, online, other |
+| reference_number | String(100) | | Receipt / invoice number |
+| tax_deductible | Boolean | NOT NULL, DEFAULT false | Tax-deductible expense |
+| notes | Text | | Notes |
+| reminder_enabled | Boolean | NOT NULL, DEFAULT true | Send due-date warnings |
+| due_reminder_days | JSON | | Days before due date (default [3, 1]) |
+| tags | JSON | DEFAULT [] | User tags |
+| created_at / updated_at | DateTime | NOT NULL | Audit timestamps |
+
+**Indexes**: `idx_payments_patient_status` (patient_id, status), `idx_payments_status_due` (status, due_date), `idx_payments_appointment_id`, `idx_payments_prescription_id`
+
+
 ## Symptom System Tables
 
 ### symptoms

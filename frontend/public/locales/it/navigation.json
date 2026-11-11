@@ -85,6 +85,7 @@
     "items": {
       "adminDashboard": "Dashboard amministratore",
       "allergies": "Allergie",
+      "appointments": "Appuntamenti",
       "backupManagement": "Gestione backup",
       "bloodDonations": "Donazioni di sangue",
       "conditions": "Patologie",
@@ -101,8 +102,10 @@
       "medicalEquipment": "Attrezzature mediche",
       "medications": "Farmaci",
       "patientInfo": "Informazioni paziente",
+      "payments": "Pagamenti",
       "pharmacies": "Farmacie",
       "practitioners": "Medici",
+      "prescriptions": "Prescrizioni",
       "procedures": "Procedure",
       "settings": "Impostazioni",
       "symptoms": "Sintomi",

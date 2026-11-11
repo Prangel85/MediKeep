@@ -119,6 +119,27 @@ export const NAVIGATION_SECTIONS = {
         id: 'blood-donations',
       },
       {
+        nameKey: 'sidebarNav.items.appointments',
+        name: 'Appointments',
+        path: buildEntityUrl(ENTITY_TYPES.APPOINTMENT),
+        icon: '🗓️',
+        id: 'appointments',
+      },
+      {
+        nameKey: 'sidebarNav.items.prescriptions',
+        name: 'Prescriptions',
+        path: buildEntityUrl(ENTITY_TYPES.PRESCRIPTION),
+        icon: '📝',
+        id: 'prescriptions',
+      },
+      {
+        nameKey: 'sidebarNav.items.payments',
+        name: 'Payments',
+        path: buildEntityUrl(ENTITY_TYPES.PAYMENT),
+        icon: '💶',
+        id: 'payments',
+      },
+      {
         nameKey: 'sidebarNav.items.visitHistory',
         name: 'Visit History',
         path: buildEntityUrl(ENTITY_TYPES.ENCOUNTER),

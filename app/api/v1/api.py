@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from app.api.v1 import admin
 from app.api.v1.endpoints import (
     allergy,
+    appointment,
     auth,
     blood_donation,
     condition,
@@ -31,8 +32,10 @@ from app.api.v1.endpoints import (
     papra,
     patient_management,
     patient_sharing,
+    payment,
     patients,
     pharmacy,
+    prescription,
     practice,
     practitioner,
     procedure,
@@ -137,6 +140,13 @@ api_router.include_router(
 api_router.include_router(
     blood_donation.router, prefix="/blood-donations", tags=["blood-donations"]
 )
+api_router.include_router(
+    appointment.router, prefix="/appointments", tags=["appointments"]
+)
+api_router.include_router(
+    prescription.router, prefix="/prescriptions", tags=["prescriptions"]
+)
+api_router.include_router(payment.router, prefix="/payments", tags=["payments"])
 api_router.include_router(allergy.router, prefix="/allergies", tags=["allergies"])
 api_router.include_router(vitals.router, prefix="/vitals", tags=["vitals"])
 api_router.include_router(symptom.router, prefix="/symptoms", tags=["symptoms"])

@@ -22,6 +22,11 @@ from app.services.notification_templates import (
     two_factor_disabled_template,
     two_factor_failures_template,
 )
+from app.services.scheduling_notification_templates import (
+    appointment_upcoming_template,
+    payment_due_template,
+    prescription_expiring_template,
+)
 
 
 def register_all_events() -> None:
@@ -133,6 +138,34 @@ def register_all_events() -> None:
         description="Notification when it is time to take a scheduled medication",
         category="medical",
         template_fn=medication_reminder_due_template,
+        is_implemented=True,
+    )
+
+    # Scheduling events (appointments, prescriptions, payments)
+    registry.register(
+        event_type="appointment_upcoming",
+        label="Upcoming Appointment",
+        description="Reminder before a scheduled appointment, at the lead times set on it",
+        category="medical",
+        template_fn=appointment_upcoming_template,
+        is_implemented=True,
+    )
+
+    registry.register(
+        event_type="prescription_expiring",
+        label="Prescription Expiring",
+        description="When an unused prescription is about to expire",
+        category="medical",
+        template_fn=prescription_expiring_template,
+        is_implemented=True,
+    )
+
+    registry.register(
+        event_type="payment_due",
+        label="Payment Due",
+        description="When an unpaid healthcare payment is coming due",
+        category="medical",
+        template_fn=payment_due_template,
         is_implemented=True,
     )
 

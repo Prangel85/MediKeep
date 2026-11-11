@@ -111,7 +111,10 @@
       "theme": "Θέμα",
       "treatments": "Θεραπείες",
       "visitHistory": "Ιστορικό Επισκέψεων",
-      "vitalSigns": "Ζωτικά Σημεία"
+      "vitalSigns": "Ζωτικά Σημεία",
+      "appointments": "Appointments",
+      "payments": "Payments",
+      "prescriptions": "Prescriptions"
     },
     "sections": {
       "administration": "Διαχείριση",
