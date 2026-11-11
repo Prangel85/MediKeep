@@ -185,6 +185,10 @@
   "description": "Configura come ricevere le notifiche per eventi importanti",
   "error": "Impossibile caricare le impostazioni delle notifiche",
   "events": {
+    "appointment_upcoming": {
+      "description": "Promemoria prima di un appuntamento, con gli anticipi impostati sull'appuntamento",
+      "name": "Appuntamento in arrivo"
+    },
     "backup_code_used": {
       "description": "Quando un codice di backup viene usato per accedere al tuo account",
       "name": "Codice di backup usato"
@@ -232,6 +236,14 @@
     "password_changed": {
       "description": "Quando la tua password viene modificata",
       "name": "Password modificata"
+    },
+    "payment_due": {
+      "description": "Quando un pagamento sanitario da fare è in scadenza",
+      "name": "Pagamento in scadenza"
+    },
+    "prescription_expiring": {
+      "description": "Quando una prescrizione non ancora usata sta per scadere",
+      "name": "Prescrizione in scadenza"
     },
     "sessions_revoked": {
       "description": "Quando gli altri tuoi dispositivi vengono disconnessi",

@@ -252,6 +252,18 @@
     "two_factor_failures": {
       "description": "När ditt lösenord används men för många tvåstegskoder är fel",
       "name": "Upprepade felaktiga koder"
+    },
+    "appointment_upcoming": {
+      "description": "Reminder before a scheduled appointment, at the lead times set on it",
+      "name": "Upcoming Appointment"
+    },
+    "payment_due": {
+      "description": "When an unpaid healthcare payment is coming due",
+      "name": "Payment Due"
+    },
+    "prescription_expiring": {
+      "description": "When an unused prescription is about to expire",
+      "name": "Prescription Expiring"
     }
   },
   "history": {

@@ -77,11 +77,12 @@ const PrescriptionFormWrapper = ({
 
   if (!isOpen) return null;
 
-  // Autocomplete shows the label but stores the typed value; keep only the code.
-  const prioritySuggestions = PRIORITY_SUGGESTIONS.map(p => ({
-    value: p.value,
-    label: t(p.labelKey, p.fallback),
-  }));
+  // Autocomplete stores the typed text: suggest the short codes and show
+  // their description in the dropdown.
+  const prioritySuggestions = PRIORITY_SUGGESTIONS.map(p => p.value);
+  const priorityLabels = Object.fromEntries(
+    PRIORITY_SUGGESTIONS.map(p => [p.value, t(p.labelKey, p.fallback)])
+  );
   const appointmentOptions = appointments.map(a => ({
     value: String(a.id),
     label: `${formatDateTime(a.scheduled_at)} - ${a.title}`,
@@ -219,6 +220,7 @@ const PrescriptionFormWrapper = ({
                       value={formData.priority || ''}
                       onChange={value => setField('priority', value)}
                       data={prioritySuggestions}
+                      renderOption={({ option }) => priorityLabels[option.value] || option.value}
                       maxLength={30}
                       comboboxProps={{ withinPortal: true, zIndex: 3000 }}
                     />

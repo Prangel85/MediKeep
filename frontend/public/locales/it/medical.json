@@ -1397,6 +1397,238 @@
       }
     }
   },
+  "scheduling": {
+    "appointmentStatus": {
+      "cancelled": "Annullata",
+      "completed": "Eseguita",
+      "confirmed": "Confermata",
+      "scheduled": "Programmata"
+    },
+    "appointmentType": {
+      "exam": "Esame diagnostico",
+      "follow_up": "Controllo",
+      "lab_test": "Analisi di laboratorio",
+      "other": "Altro",
+      "procedure": "Intervento / procedura",
+      "telehealth": "Televisita",
+      "therapy": "Seduta di terapia",
+      "vaccination": "Vaccinazione",
+      "visit": "Visita"
+    },
+    "appointments": {
+      "add": "+ Aggiungi appuntamento",
+      "addFirst": "Aggiungi il primo appuntamento",
+      "addTitle": "Nuovo appuntamento",
+      "chooseVisit": "Visita",
+      "completeFailed": "Impossibile segnare l'appuntamento come eseguito",
+      "completeHelp": "L'appuntamento viene registrato nello storico delle visite.",
+      "completeTitle": "Segna appuntamento come eseguito",
+      "completed": "Appuntamento registrato nello storico delle visite",
+      "createVisit": "Crea una nuova visita da questo appuntamento",
+      "editTitle": "Modifica appuntamento",
+      "linkVisit": "Collega una visita già registrata",
+      "linkedVisit": "Registrato come visita:",
+      "loading": "Caricamento appuntamenti...",
+      "locationPlaceholder": "es. Ospedale, padiglione B, 2° piano",
+      "markCompleted": "Segna come eseguita",
+      "noneFound": "Nessun appuntamento trovato",
+      "notesPlaceholder": "Cosa portare, preparazione, domande da fare...",
+      "openVisit": "apri la visita",
+      "save": "Salva appuntamento",
+      "saving": "Salvataggio appuntamento...",
+      "startAdding": "Aggiungi le prossime visite ed esami per ricevere promemoria.",
+      "title": "Appuntamenti",
+      "titlePlaceholder": "es. Visita cardiologica, Esami del sangue",
+      "update": "Aggiorna appuntamento",
+      "visitNotes": "Note della visita (facoltative)"
+    },
+    "dashboard": {
+      "due": "{{amount}} - scade il {{date}}",
+      "empty": "Nessun appuntamento, prescrizione in scadenza o pagamento nei prossimi 30 giorni.",
+      "expires": "Scade il {{date}}",
+      "more_one": "+{{count}} altro",
+      "more_other": "+{{count}} altri",
+      "overdue": "{{amount}} - scaduto dal {{date}}",
+      "title": "Prossime scadenze",
+      "viewAll": "Vedi appuntamenti"
+    },
+    "daysBefore_one": "{{count}} giorno prima",
+    "daysBefore_other": "{{count}} giorni prima",
+    "due": {
+      "inDays_one": "Scade tra {{count}} giorno",
+      "inDays_other": "Scade tra {{count}} giorni",
+      "overdue": "Scaduto",
+      "today": "Scade oggi"
+    },
+    "entityNames": {
+      "appointment": "appuntamento",
+      "payment": "pagamento",
+      "prescription": "prescrizione"
+    },
+    "expiry": {
+      "expired": "Scaduta",
+      "inDays_one": "Scade tra {{count}} giorno",
+      "inDays_other": "Scade tra {{count}} giorni",
+      "today": "Scade oggi"
+    },
+    "fields": {
+      "amount": "Importo",
+      "appointment": "Appuntamento",
+      "appointmentType": "Tipo",
+      "currency": "Valuta",
+      "date": "Data",
+      "dateTime": "Data e ora",
+      "description": "Descrizione",
+      "dueDate": "Scadenza",
+      "duration": "Durata",
+      "durationMinutes": "Durata (min)",
+      "exemptionCode": "Esenzione",
+      "expiryDate": "Scadenza",
+      "issuedDate": "Data di emissione",
+      "items": "Prestazioni",
+      "location": "Luogo",
+      "medication": "Farmaco",
+      "paidDate": "Pagato il",
+      "payee": "Pagato a",
+      "paymentMethod": "Metodo",
+      "paymentType": "Tipo",
+      "practice": "Struttura",
+      "practitioner": "Medico",
+      "prescriber": "Medico prescrittore",
+      "prescription": "Prescrizione",
+      "prescriptionNumber": "NRE / numero ricetta",
+      "prescriptionType": "Tipo",
+      "priority": "Classe di priorità",
+      "referenceNumber": "Numero ricevuta / fattura",
+      "status": "Stato",
+      "taxDeductible": "Detraibile",
+      "time": "Ora",
+      "title": "Titolo",
+      "usedDate": "Usata il"
+    },
+    "filters": {
+      "allStatuses": "Tutti gli stati",
+      "allTypes": "Tutti i tipi"
+    },
+    "items": {
+      "add": "Aggiungi prestazione",
+      "code": "Codice",
+      "description": "Descrizione",
+      "empty": "Nessuna prestazione. Aggiungi i farmaci, gli esami o le visite prescritti.",
+      "quantity": "Qtà",
+      "remove": "Rimuovi prestazione"
+    },
+    "leadTime": {
+      "days_one": "{{count}} giorno",
+      "days_other": "{{count}} giorni",
+      "hours_one": "{{count}} ora",
+      "hours_other": "{{count}} ore",
+      "minutes_one": "{{count}} minuto",
+      "minutes_other": "{{count}} minuti"
+    },
+    "minutesShort_one": "{{count}} min",
+    "minutesShort_other": "{{count}} min",
+    "paymentMethod": {
+      "bank_transfer": "Bonifico",
+      "card": "Carta",
+      "cash": "Contanti",
+      "online": "Online (pagoPA, app...)",
+      "other": "Altro"
+    },
+    "paymentStatus": {
+      "cancelled": "Annullato",
+      "due": "Da pagare",
+      "paid": "Pagato"
+    },
+    "paymentType": {
+      "copay": "Ticket",
+      "insurance": "Assicurazione",
+      "intramural": "Intramoenia",
+      "other": "Altro",
+      "pharmacy": "Farmacia",
+      "private": "Privato"
+    },
+    "payments": {
+      "add": "+ Aggiungi pagamento",
+      "addFirst": "Aggiungi il primo pagamento",
+      "addTitle": "Nuovo pagamento",
+      "allYears": "Tutti gli anni",
+      "descriptionPlaceholder": "es. Ticket esami del sangue, Seduta di fisioterapia",
+      "editTitle": "Modifica pagamento",
+      "loading": "Caricamento pagamenti...",
+      "noneFound": "Nessun pagamento trovato",
+      "payeeHelp": "Se non è una struttura salvata (farmacia, laboratorio...)",
+      "receipts": "Ricevute",
+      "remindersHelp": "Inviati prima della scadenza finché il pagamento è da fare.",
+      "save": "Salva pagamento",
+      "saving": "Salvataggio pagamento...",
+      "startAdding": "Tieni traccia di ticket e spese mediche, con ricevute e promemoria di scadenza.",
+      "summary": "Riepilogo",
+      "title": "Pagamenti",
+      "totalDeductible": "Detraibile (pagato)",
+      "totalDue": "Da pagare",
+      "totalPaid": "Pagato",
+      "update": "Aggiorna pagamento",
+      "year": "Anno"
+    },
+    "prescriptionStatus": {
+      "active": "Da usare",
+      "cancelled": "Annullata",
+      "expired": "Scaduta",
+      "used": "Usata"
+    },
+    "prescriptionType": {
+      "device": "Dispositivo medico",
+      "exam": "Esame / analisi",
+      "medication": "Farmaco",
+      "other": "Altro",
+      "referral": "Visita specialistica",
+      "therapy": "Terapia"
+    },
+    "prescriptions": {
+      "add": "+ Aggiungi prescrizione",
+      "addFirst": "Aggiungi la prima prescrizione",
+      "addTitle": "Nuova prescrizione",
+      "editTitle": "Modifica prescrizione",
+      "loading": "Caricamento prescrizioni...",
+      "noneFound": "Nessuna prescrizione trovata",
+      "numberHelp": "Numero di Ricetta Elettronica (NRE) o numero stampato sulla ricetta",
+      "remindersHelp": "Inviati prima della scadenza finché la prescrizione non è stata usata.",
+      "save": "Salva prescrizione",
+      "saving": "Salvataggio prescrizione...",
+      "startAdding": "Aggiungi ricette e impegnative per essere avvisato prima che scadano.",
+      "title": "Prescrizioni",
+      "titlePlaceholder": "es. Esami del sangue, Visita cardiologica",
+      "update": "Aggiorna prescrizione"
+    },
+    "priority": {
+      "B": "B - Breve (entro 10 giorni)",
+      "D": "D - Differibile (30 giorni visite / 60 giorni esami)",
+      "P": "P - Programmata (entro 120 giorni)",
+      "U": "U - Urgente (entro 72 ore)"
+    },
+    "reminders": {
+      "enabled": "Invia promemoria",
+      "help": "I promemoria sono inviati tramite i canali di notifica configurati in Impostazioni > Notifiche.",
+      "none": "Nessun promemoria",
+      "pick": "Scegli uno o più",
+      "when": "Quando avvisare"
+    },
+    "tabs": {
+      "details": "Dettagli",
+      "items": "Prestazioni",
+      "reminders": "Promemoria"
+    },
+    "validation": {
+      "amount": "Inserisci un importo valido",
+      "currency": "Codice di 3 lettere, es. EUR",
+      "dateTimeRequired": "Data e ora sono obbligatorie",
+      "descriptionRequired": "La descrizione è obbligatoria",
+      "expiryBeforeIssue": "La scadenza non può precedere la data di emissione",
+      "issuedDateRequired": "La data di emissione è obbligatoria",
+      "titleRequired": "Il titolo è obbligatorio"
+    }
+  },
   "symptoms": {
     "messages": {
       "saving": "Salvataggio sintomo..."

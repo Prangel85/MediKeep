@@ -111,7 +111,10 @@
       "theme": "Tema",
       "treatments": "Tratamientos",
       "visitHistory": "Historial de visitas",
-      "vitalSigns": "Signos vitales"
+      "vitalSigns": "Signos vitales",
+      "appointments": "Appointments",
+      "payments": "Payments",
+      "prescriptions": "Prescriptions"
     },
     "sections": {
       "administration": "Administración",

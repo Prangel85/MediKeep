@@ -252,6 +252,18 @@
     "two_factor_failures": {
       "description": "Όταν χρησιμοποιείται ο κωδικός πρόσβασής σας αλλά πάρα πολλοί κωδικοί δύο βημάτων είναι λάθος",
       "name": "Επανειλημμένα λάθος κωδικοί"
+    },
+    "appointment_upcoming": {
+      "description": "Reminder before a scheduled appointment, at the lead times set on it",
+      "name": "Upcoming Appointment"
+    },
+    "payment_due": {
+      "description": "When an unpaid healthcare payment is coming due",
+      "name": "Payment Due"
+    },
+    "prescription_expiring": {
+      "description": "When an unused prescription is about to expire",
+      "name": "Prescription Expiring"
     }
   },
   "history": {
