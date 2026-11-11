@@ -28,6 +28,7 @@ export const ENTITY_TYPES = {
   PRACTICE: 'practice',
   BLOOD_DONATION: 'blood_donation',
   APPOINTMENT: 'appointment',
+  PRESCRIPTION: 'prescription',
 };
 
 // Relationship types

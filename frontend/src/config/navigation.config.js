@@ -126,6 +126,13 @@ export const NAVIGATION_SECTIONS = {
         id: 'appointments',
       },
       {
+        nameKey: 'sidebarNav.items.prescriptions',
+        name: 'Prescriptions',
+        path: buildEntityUrl(ENTITY_TYPES.PRESCRIPTION),
+        icon: '📝',
+        id: 'prescriptions',
+      },
+      {
         nameKey: 'sidebarNav.items.visitHistory',
         name: 'Visit History',
         path: buildEntityUrl(ENTITY_TYPES.ENCOUNTER),
