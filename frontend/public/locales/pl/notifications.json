@@ -254,16 +254,16 @@
       "name": "Powtarzające się błędne kody"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "Przypomnienie przed zaplanowaną wizytą, w ustawionych odstępach czasu",
+      "name": "Nadchodząca wizyta"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "Gdy zbliża się termin niezapłaconej opłaty medycznej",
+      "name": "Termin płatności"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "Gdy niezrealizowana recepta wkrótce wygaśnie",
+      "name": "Recepta wygasa"
     }
   },
   "history": {

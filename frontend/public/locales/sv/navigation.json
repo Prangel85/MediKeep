@@ -112,9 +112,9 @@
       "treatments": "Behandlingar",
       "visitHistory": "Besökshistorik",
       "vitalSigns": "Vitalparametrar",
-      "appointments": "Appointments",
-      "payments": "Payments",
-      "prescriptions": "Prescriptions"
+      "appointments": "Bokade tider",
+      "payments": "Betalningar",
+      "prescriptions": "Recept"
     },
     "sections": {
       "administration": "Administration",

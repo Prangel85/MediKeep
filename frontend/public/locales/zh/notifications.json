@@ -254,16 +254,16 @@
       "name": "多次输入错误验证码"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "在预约前按设置的提前时间提醒",
+      "name": "即将到来的预约"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "当未付的医疗费用即将到期时",
+      "name": "付款即将到期"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "当未使用的处方即将过期时",
+      "name": "处方即将过期"
     }
   },
   "history": {

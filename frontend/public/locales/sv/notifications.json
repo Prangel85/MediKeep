@@ -254,16 +254,16 @@
       "name": "Upprepade felaktiga koder"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "Påminnelse före en bokad tid, vid de tidpunkter som angetts för den",
+      "name": "Kommande tid"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "När en obetald vårdkostnad snart förfaller",
+      "name": "Betalning förfaller"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "När ett oanvänt recept snart går ut",
+      "name": "Recept går ut"
     }
   },
   "history": {

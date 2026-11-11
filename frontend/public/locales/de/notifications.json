@@ -254,16 +254,16 @@
       "name": "Wiederholt falsche Codes"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "Erinnerung vor einem geplanten Termin, zu den dort eingestellten Zeitpunkten",
+      "name": "Anstehender Termin"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "Wenn eine offene Gesundheitsausgabe bald fällig ist",
+      "name": "Zahlung fällig"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "Wenn eine noch nicht eingelöste Verordnung bald abläuft",
+      "name": "Verordnung läuft ab"
     }
   },
   "history": {

@@ -112,9 +112,9 @@
       "treatments": "Behandlungen",
       "visitHistory": "Besuchsverlauf",
       "vitalSigns": "Vitalzeichen",
-      "appointments": "Appointments",
-      "payments": "Payments",
-      "prescriptions": "Prescriptions"
+      "appointments": "Termine",
+      "payments": "Zahlungen",
+      "prescriptions": "Verordnungen"
     },
     "sections": {
       "administration": "Administration",

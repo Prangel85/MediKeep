@@ -112,9 +112,9 @@
       "treatments": "Behandelingen",
       "visitHistory": "Bezoekgeschiedenis",
       "vitalSigns": "Vitale functies",
-      "appointments": "Appointments",
-      "payments": "Payments",
-      "prescriptions": "Prescriptions"
+      "appointments": "Afspraken",
+      "payments": "Betalingen",
+      "prescriptions": "Recepten"
     },
     "sections": {
       "administration": "Beheer",

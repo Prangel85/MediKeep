@@ -99,7 +99,8 @@
     "kg",
     "lbs",
     "mmHg",
-    "{{count}} Error"
+    "{{count}} Error",
+    "{{count}} min"
   ],
   "fr": [
     "1 dose",
@@ -190,7 +191,11 @@
     "{{count}} vaccinations",
     "{{minutes}} minutes",
     "{{size}} total",
-    "📝 Notes"
+    "📝 Notes",
+    "Vaccination",
+    "{{count}} min",
+    "{{count}} minute",
+    "{{count}} minutes"
   ],
   "it": [
     "1 dose",
@@ -219,7 +224,8 @@
     "{{count}} file",
     "{{count}} record",
     "{{count}} test",
-    "Link"
+    "Link",
+    "{{count}} min"
   ],
   "nl": [
     "Account",
@@ -296,7 +302,9 @@
     "kg",
     "lbs",
     "mmHg",
-    "Link"
+    "Link",
+    "Online",
+    "{{count}} min"
   ],
   "pt": [
     "1 dose",
@@ -333,7 +341,8 @@
     "{{count}} backups",
     "{{count}} doses",
     "{{count}} total",
-    "Link"
+    "Link",
+    "{{count}} min"
   ],
   "ru": [
     "GitHub ID:"
@@ -391,7 +400,9 @@
     "mmHg",
     "patient",
     "{{count}} patient",
-    "{{count}} test"
+    "{{count}} test",
+    "Vaccination",
+    "{{count}} min"
   ],
   "th": [
     "GitHub ID:",

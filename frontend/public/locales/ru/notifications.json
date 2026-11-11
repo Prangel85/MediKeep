@@ -254,16 +254,16 @@
       "name": "Повторные неверные коды"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "Напоминание перед записью, за указанное в ней время",
+      "name": "Предстоящая запись"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "Когда приближается срок неоплаченного медицинского платежа",
+      "name": "Срок оплаты"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "Когда неиспользованный рецепт скоро истечёт",
+      "name": "Рецепт истекает"
     }
   },
   "history": {

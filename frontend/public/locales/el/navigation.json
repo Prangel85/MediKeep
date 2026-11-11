@@ -112,9 +112,9 @@
       "treatments": "Θεραπείες",
       "visitHistory": "Ιστορικό Επισκέψεων",
       "vitalSigns": "Ζωτικά Σημεία",
-      "appointments": "Appointments",
-      "payments": "Payments",
-      "prescriptions": "Prescriptions"
+      "appointments": "Ραντεβού",
+      "payments": "Πληρωμές",
+      "prescriptions": "Συνταγές"
     },
     "sections": {
       "administration": "Διαχείριση",

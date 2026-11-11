@@ -254,16 +254,16 @@
       "name": "Códigos incorrectos repetidos"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "Recordatorio antes de una cita, con las antelaciones configuradas en ella",
+      "name": "Próxima cita"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "Cuando un pago sanitario pendiente está por vencer",
+      "name": "Pago por vencer"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "Cuando una receta sin usar está a punto de vencer",
+      "name": "Receta por vencer"
     }
   },
   "history": {

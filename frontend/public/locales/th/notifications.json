@@ -254,16 +254,16 @@
       "name": "ใส่รหัสผิดซ้ำหลายครั้ง"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "แจ้งเตือนก่อนนัดหมายตามเวลาล่วงหน้าที่ตั้งไว้",
+      "name": "นัดหมายที่กำลังจะมาถึง"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "เมื่อค่าใช้จ่ายทางการแพทย์ที่ยังไม่ชำระใกล้ครบกำหนด",
+      "name": "ใกล้ครบกำหนดชำระ"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "เมื่อใบสั่งแพทย์ที่ยังไม่ได้ใช้ใกล้หมดอายุ",
+      "name": "ใบสั่งแพทย์ใกล้หมดอายุ"
     }
   },
   "history": {

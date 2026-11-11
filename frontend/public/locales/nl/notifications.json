@@ -254,16 +254,16 @@
       "name": "Herhaaldelijk verkeerde codes"
     },
     "appointment_upcoming": {
-      "description": "Reminder before a scheduled appointment, at the lead times set on it",
-      "name": "Upcoming Appointment"
+      "description": "Herinnering vóór een geplande afspraak, op de ingestelde tijdstippen",
+      "name": "Komende afspraak"
     },
     "payment_due": {
-      "description": "When an unpaid healthcare payment is coming due",
-      "name": "Payment Due"
+      "description": "Wanneer een openstaande zorgbetaling bijna vervalt",
+      "name": "Betaling vervalt"
     },
     "prescription_expiring": {
-      "description": "When an unused prescription is about to expire",
-      "name": "Prescription Expiring"
+      "description": "Wanneer een ongebruikt recept bijna verloopt",
+      "name": "Recept verloopt"
     }
   },
   "history": {

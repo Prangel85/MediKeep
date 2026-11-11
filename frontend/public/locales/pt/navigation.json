@@ -112,9 +112,9 @@
       "treatments": "Tratamentos",
       "visitHistory": "Histórico de Consultas",
       "vitalSigns": "Sinais Vitais",
-      "appointments": "Appointments",
-      "payments": "Payments",
-      "prescriptions": "Prescriptions"
+      "appointments": "Consultas agendadas",
+      "payments": "Pagamentos",
+      "prescriptions": "Receitas"
     },
     "sections": {
       "administration": "Administração",

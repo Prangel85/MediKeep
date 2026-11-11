@@ -112,9 +112,9 @@
       "treatments": "Лечение",
       "visitHistory": "История визитов",
       "vitalSigns": "Жизненные показатели",
-      "appointments": "Appointments",
-      "payments": "Payments",
-      "prescriptions": "Prescriptions"
+      "appointments": "Записи к врачу",
+      "payments": "Платежи",
+      "prescriptions": "Рецепты"
     },
     "sections": {
       "administration": "Администрирование",

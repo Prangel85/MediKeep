@@ -112,9 +112,9 @@
       "treatments": "Leczenie",
       "visitHistory": "Historia wizyt",
       "vitalSigns": "Podstawowe parametry życiowe",
-      "appointments": "Appointments",
-      "payments": "Payments",
-      "prescriptions": "Prescriptions"
+      "appointments": "Wizyty",
+      "payments": "Płatności",
+      "prescriptions": "Recepty"
     },
     "sections": {
       "administration": "Administracja",
