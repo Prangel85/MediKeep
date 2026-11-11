@@ -8,7 +8,7 @@ one place but not the other fails here instead of at deploy time.
 import pytest
 import sqlalchemy as sa
 
-from app.models.scheduling import Appointment, Prescription
+from app.models.scheduling import Appointment, Payment, Prescription
 from tests.utils.migrations import run_migration
 
 PARENT_TABLES = ("patients", "practitioners", "practices", "encounters", "medications")
@@ -17,6 +17,7 @@ PARENT_TABLES = ("patients", "practitioners", "practices", "encounters", "medica
 MIGRATIONS = [
     ("20261111_1000_5c0a1e7d3f01_scheduling_add_appointments.py", Appointment),
     ("20261111_1100_6d1b2f8e4a12_scheduling_add_prescriptions.py", Prescription),
+    ("20261111_1200_7e2c3a9f5b23_scheduling_add_payments.py", Payment),
 ]
 
 

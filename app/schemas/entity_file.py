@@ -21,6 +21,7 @@ class EntityType(str, Enum):
     TREATMENT = "treatment"
     SYMPTOM = "symptom"
     INJURY = "injury"
+    PAYMENT = "payment"  # Receipts
 
 
 class EntityFileBase(BaseModel):

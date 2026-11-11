@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, Query, Request
 from sqlalchemy.orm import Session
 
 from app.api import deps
+from app.api.v1.endpoints.scheduling_links import verify_same_patient_links
 from app.api.v1.endpoints.utils import (
     handle_create_with_logging,
     handle_delete_with_logging,
@@ -16,8 +17,6 @@ from app.api.v1.endpoints.utils import (
 from app.core.http.error_handling import handle_database_errors
 from app.core.logging.config import get_logger
 from app.core.logging.helpers import log_data_access
-from app.crud.appointment import appointment
-from app.crud.medication import medication
 from app.crud.prescription import prescription
 from app.models.activity_log import EntityType
 from app.models.models import User
@@ -30,30 +29,6 @@ from app.schemas.prescription import (
 router = APIRouter()
 
 logger = get_logger(__name__, "app")
-
-
-def verify_same_patient_links(
-    db: Session,
-    request: Request,
-    patient_id: int,
-    *,
-    appointment_id: Optional[int] = None,
-    medication_id: Optional[int] = None,
-) -> None:
-    """Linked appointment/medication must belong to the same patient.
-
-    A record of another patient is reported as not found, like a missing one,
-    so the response does not reveal that it exists.
-    """
-    for record_id, crud_obj, name in (
-        (appointment_id, appointment, "Appointment"),
-        (medication_id, medication, "Medication"),
-    ):
-        if record_id is None:
-            continue
-        linked = crud_obj.get(db, id=record_id)
-        if linked is None or linked.patient_id != patient_id:
-            handle_not_found(None, name, request)
 
 
 @router.post("/", response_model=PrescriptionResponse)

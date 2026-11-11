@@ -1,6 +1,6 @@
 """
-Scheduling models: upcoming appointments, prescriptions/referrals (and, in a
-later step, payments).
+Scheduling models: upcoming appointments, prescriptions/referrals and
+healthcare payments.
 
 Kept in a dedicated module so the feature stays isolated from the existing
 clinical models. Relationships towards existing tables (Patient,
@@ -19,6 +19,7 @@ from sqlalchemy import (
     ForeignKey,
     Index,
     Integer,
+    Numeric,
     String,
     Text,
 )
@@ -91,6 +92,49 @@ def get_all_prescription_statuses() -> list:
 
 def get_all_prescription_types() -> list:
     return [t.value for t in PrescriptionType]
+
+
+class PaymentStatus(Enum):
+    """Whether a healthcare expense has been paid."""
+
+    DUE = "due"
+    PAID = "paid"
+    CANCELLED = "cancelled"
+
+
+class PaymentType(Enum):
+    """Kind of healthcare expense."""
+
+    COPAY = "copay"  # Patient share in a public/insured system (e.g. Italian "ticket")
+    PRIVATE = "private"  # Fully private service
+    INTRAMURAL = "intramural"  # Private service inside a public facility (e.g. "intramoenia")
+    INSURANCE = "insurance"  # Insurance premium or deductible
+    PHARMACY = "pharmacy"
+    OTHER = "other"
+
+
+class PaymentMethod(Enum):
+    CASH = "cash"
+    CARD = "card"
+    BANK_TRANSFER = "bank_transfer"
+    ONLINE = "online"
+    OTHER = "other"
+
+
+# Default due-date warnings: 3 days and 1 day before due_date.
+DEFAULT_PAYMENT_DUE_REMINDER_DAYS = [3, 1]
+
+
+def get_all_payment_statuses() -> list:
+    return [s.value for s in PaymentStatus]
+
+
+def get_all_payment_types() -> list:
+    return [t.value for t in PaymentType]
+
+
+def get_all_payment_methods() -> list:
+    return [m.value for m in PaymentMethod]
 
 
 def get_all_appointment_statuses() -> list:
@@ -236,4 +280,74 @@ class Prescription(Base):
         Index("idx_prescriptions_patient_issued", "patient_id", "issued_date"),
         Index("idx_prescriptions_status_expiry", "status", "expiry_date"),
         Index("idx_prescriptions_appointment_id", "appointment_id"),
+    )
+
+
+class Payment(Base):
+    """
+    A healthcare expense: an amount due or paid for a visit, an exam, a
+    prescription, a medication, ...
+
+    Receipts are attached through the generic entity file system
+    (entity_type "payment").
+    """
+
+    __tablename__ = "payments"
+
+    id = Column(Integer, primary_key=True)
+    patient_id = Column(
+        Integer, ForeignKey("patients.id", ondelete="CASCADE"), nullable=False
+    )
+    appointment_id = Column(
+        Integer, ForeignKey("appointments.id", ondelete="SET NULL"), nullable=True
+    )
+    prescription_id = Column(
+        Integer, ForeignKey("prescriptions.id", ondelete="SET NULL"), nullable=True
+    )
+    # Who was paid: a known practice, or free text (pharmacy, lab, ...)
+    practice_id = Column(
+        Integer, ForeignKey("practices.id", ondelete="SET NULL"), nullable=True
+    )
+    payee = Column(String(200), nullable=True)
+
+    description = Column(String(200), nullable=False)
+    amount = Column(Numeric(10, 2), nullable=False)
+    currency = Column(String(3), nullable=False)  # ISO 4217 code
+    payment_type = Column(String(30), nullable=False)  # PaymentType
+    status = Column(String(20), nullable=False, default=PaymentStatus.DUE.value)
+    due_date = Column(Date, nullable=True)
+    paid_date = Column(Date, nullable=True)
+    payment_method = Column(String(30), nullable=True)  # PaymentMethod
+    reference_number = Column(String(100), nullable=True)  # Receipt / invoice no.
+    tax_deductible = Column(Boolean, nullable=False, default=False)
+    notes = Column(Text, nullable=True)
+
+    # Due-date warnings: days before due_date, only while status is due.
+    reminder_enabled = Column(Boolean, nullable=False, default=True)
+    due_reminder_days = Column(JSON, nullable=True)
+
+    tags = Column(JSON, nullable=True, default=list)
+
+    created_at = Column(DateTime, default=get_utc_now, nullable=False)
+    updated_at = Column(
+        DateTime, default=get_utc_now, onupdate=get_utc_now, nullable=False
+    )
+
+    patient = orm_relationship(
+        "Patient",
+        backref=backref("payments", cascade="all, delete-orphan", passive_deletes=True),
+    )
+    appointment = orm_relationship(
+        "Appointment", backref=backref("payments", passive_deletes=True)
+    )
+    prescription = orm_relationship(
+        "Prescription", backref=backref("payments", passive_deletes=True)
+    )
+    practice = orm_relationship("Practice")
+
+    __table_args__ = (
+        Index("idx_payments_patient_status", "patient_id", "status"),
+        Index("idx_payments_status_due", "status", "due_date"),
+        Index("idx_payments_appointment_id", "appointment_id"),
+        Index("idx_payments_prescription_id", "prescription_id"),
     )

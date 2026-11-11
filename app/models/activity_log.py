@@ -159,6 +159,7 @@ class EntityType:
     BLOOD_DONATION = "blood_donation"
     APPOINTMENT = "appointment"
     PRESCRIPTION = "prescription"
+    PAYMENT = "payment"
     TAG = "tag"
     HEALTH_RECORD_IMPORT = "health_record_import"
 
@@ -198,6 +199,7 @@ class EntityType:
             cls.BLOOD_DONATION,
             cls.APPOINTMENT,
             cls.PRESCRIPTION,
+            cls.PAYMENT,
             cls.TAG,
             cls.HEALTH_RECORD_IMPORT,
             cls.SYSTEM,
