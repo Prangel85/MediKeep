@@ -76,6 +76,7 @@ import Injuries from './pages/medical/Injuries';
 import BloodDonations from './pages/medical/BloodDonations';
 import Appointments from './pages/medical/Appointments';
 import Prescriptions from './pages/medical/Prescriptions';
+import Payments from './pages/medical/Payments';
 import MedicalEquipment from './pages/medical/MedicalEquipment';
 import Practitioners from './pages/medical/Practitioners';
 import Pharmacies from './pages/medical/Pharmacies';
@@ -138,6 +139,7 @@ const ENTITY_COMPONENT_MAP = {
   [ENTITY_TYPES.BLOOD_DONATION]: BloodDonations,
   [ENTITY_TYPES.APPOINTMENT]: Appointments,
   [ENTITY_TYPES.PRESCRIPTION]: Prescriptions,
+  [ENTITY_TYPES.PAYMENT]: Payments,
   [ENTITY_TYPES.PRACTITIONER]: Practitioners,
   [ENTITY_TYPES.PHARMACY]: Pharmacies,
   [ENTITY_TYPES.EMERGENCY_CONTACT]: EmergencyContacts,
@@ -160,6 +162,7 @@ const ENTITY_ROUTE_MAP = {
   [ENTITY_TYPES.BLOOD_DONATION]: '/blood-donations',
   [ENTITY_TYPES.APPOINTMENT]: '/appointments',
   [ENTITY_TYPES.PRESCRIPTION]: '/prescriptions',
+  [ENTITY_TYPES.PAYMENT]: '/payments',
   [ENTITY_TYPES.PRACTITIONER]: '/practitioners',
   [ENTITY_TYPES.PHARMACY]: '/pharmacies',
   [ENTITY_TYPES.EMERGENCY_CONTACT]: '/emergency-contacts',

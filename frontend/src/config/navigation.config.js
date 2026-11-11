@@ -133,6 +133,13 @@ export const NAVIGATION_SECTIONS = {
         id: 'prescriptions',
       },
       {
+        nameKey: 'sidebarNav.items.payments',
+        name: 'Payments',
+        path: buildEntityUrl(ENTITY_TYPES.PAYMENT),
+        icon: '💶',
+        id: 'payments',
+      },
+      {
         nameKey: 'sidebarNav.items.visitHistory',
         name: 'Visit History',
         path: buildEntityUrl(ENTITY_TYPES.ENCOUNTER),

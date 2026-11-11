@@ -32,6 +32,7 @@ const ENTITY_TO_ROUTE_MAP = {
   [ENTITY_TYPES.BLOOD_DONATION]: '/blood-donations',
   [ENTITY_TYPES.APPOINTMENT]: '/appointments',
   [ENTITY_TYPES.PRESCRIPTION]: '/prescriptions',
+  [ENTITY_TYPES.PAYMENT]: '/payments',
 };
 
 /**
