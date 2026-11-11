@@ -27,6 +27,7 @@ export const ENTITY_TYPES = {
   MEDICAL_EQUIPMENT: 'medical_equipment',
   PRACTICE: 'practice',
   BLOOD_DONATION: 'blood_donation',
+  APPOINTMENT: 'appointment',
 };
 
 // Relationship types
