@@ -51,6 +51,7 @@ ENTITY_TYPE_DISPLAY = {
     "medical_equipment": "Medical Equipment",
     "blood_donation": "Blood Donation",
     "appointment": "Appointment",
+    "prescription": "Prescription",
     "practice": "Practice",
     "system": "System",
     "backup": "Backup",

@@ -1,6 +1,6 @@
 """Schemas for scheduled Appointments."""
 
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_serializer, field_validator
@@ -15,6 +15,11 @@ from app.schemas.base_tags import (
     TaggedEntityResponseMixin,
     TaggedEntityUpdateMixin,
 )
+from app.schemas.scheduling_common import (
+    serialize_datetime_utc,
+    validate_choice,
+    validate_int_list,
+)
 from app.schemas.validators import (
     validate_positive_id,
     validate_required_text,
@@ -26,44 +31,18 @@ MAX_REMINDER_OFFSET_MINUTES = 60 * 24 * 60
 MAX_REMINDER_OFFSETS = 10
 
 
-def _serialize_datetime_utc(value: Optional[datetime]) -> Optional[str]:
-    """Emit stored (naive UTC) datetimes as explicit UTC ISO strings."""
-    if value is None:
-        return None
-    if value.tzinfo is None:
-        value = value.replace(tzinfo=timezone.utc)
-    else:
-        value = value.astimezone(timezone.utc)
-    return value.isoformat()
-
-
-def _validate_choice(v: Optional[str], allowed: list, label: str) -> Optional[str]:
-    if v is None:
-        return None
-    normalized = v.strip().lower()
-    if normalized not in allowed:
-        raise ValueError(f"{label} must be one of: {', '.join(allowed)}")
-    return normalized
-
-
 def validate_reminder_offsets(v: Optional[List[int]]) -> Optional[List[int]]:
     """Validate reminder lead times (minutes): positive, bounded, de-duplicated.
 
     Returned sorted from the longest lead time to the shortest.
     """
-    if v is None:
-        return None
-    if len(v) > MAX_REMINDER_OFFSETS:
-        raise ValueError(f"At most {MAX_REMINDER_OFFSETS} reminders are allowed")
-    for offset in v:
-        if isinstance(offset, bool) or not isinstance(offset, int):
-            raise ValueError("Reminder offsets must be whole minutes")
-        if offset < 1 or offset > MAX_REMINDER_OFFSET_MINUTES:
-            raise ValueError(
-                f"Reminder offsets must be between 1 and "
-                f"{MAX_REMINDER_OFFSET_MINUTES} minutes"
-            )
-    return sorted(set(v), reverse=True)
+    return validate_int_list(
+        v,
+        minimum=1,
+        maximum=MAX_REMINDER_OFFSET_MINUTES,
+        max_items=MAX_REMINDER_OFFSETS,
+        label="reminder offsets (minutes)",
+    )
 
 
 class _AppointmentValidators(BaseModel):
@@ -81,12 +60,12 @@ class _AppointmentValidators(BaseModel):
     @field_validator("appointment_type", check_fields=False)
     @classmethod
     def validate_appointment_type(cls, v):
-        return _validate_choice(v, get_all_appointment_types(), "Appointment type")
+        return validate_choice(v, get_all_appointment_types(), "Appointment type")
 
     @field_validator("status", check_fields=False)
     @classmethod
     def validate_status(cls, v):
-        return _validate_choice(v, get_all_appointment_statuses(), "Status")
+        return validate_choice(v, get_all_appointment_statuses(), "Status")
 
     @field_validator("location", check_fields=False)
     @classmethod
@@ -178,7 +157,7 @@ class AppointmentResponse(TaggedEntityResponseMixin, AppointmentBase):
     @field_serializer("scheduled_at", "created_at", "updated_at")
     @classmethod
     def serialize_datetime_as_utc(cls, value: Optional[datetime]) -> Optional[str]:
-        return _serialize_datetime_utc(value)
+        return serialize_datetime_utc(value)
 
 
 class AppointmentComplete(BaseModel):

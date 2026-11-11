@@ -158,6 +158,7 @@ class EntityType:
     MEDICAL_EQUIPMENT = "medical_equipment"
     BLOOD_DONATION = "blood_donation"
     APPOINTMENT = "appointment"
+    PRESCRIPTION = "prescription"
     TAG = "tag"
     HEALTH_RECORD_IMPORT = "health_record_import"
 
@@ -196,6 +197,7 @@ class EntityType:
             cls.INJURY_TYPE,
             cls.BLOOD_DONATION,
             cls.APPOINTMENT,
+            cls.PRESCRIPTION,
             cls.TAG,
             cls.HEALTH_RECORD_IMPORT,
             cls.SYSTEM,
