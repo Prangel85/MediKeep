@@ -280,6 +280,17 @@ async def startup_event():
         logger.warning(f"Could not initialize medication reminder scheduler: {e}")
         # Non-fatal - app still functions without reminders
 
+    # Initialize appointment / prescription / payment reminder scheduler
+    try:
+        from app.services.scheduling_reminder_scheduler import (
+            SchedulingReminderSchedulerService,
+        )
+
+        await SchedulingReminderSchedulerService.get_instance().start()
+    except Exception as e:
+        logger.warning(f"Could not initialize scheduling reminder scheduler: {e}")
+        # Non-fatal - app still functions without reminders
+
     try:
         from app.services.data_retention_scheduler import (
             DataRetentionSchedulerService,

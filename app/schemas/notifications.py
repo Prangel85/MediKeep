@@ -81,6 +81,9 @@ class EventType(str, Enum):
 
     # Medical events
     MEDICATION_REMINDER_DUE = "medication_reminder_due"
+    APPOINTMENT_UPCOMING = "appointment_upcoming"
+    PRESCRIPTION_EXPIRING = "prescription_expiring"
+    PAYMENT_DUE = "payment_due"
 
 
 class NotificationStatus(str, Enum):
