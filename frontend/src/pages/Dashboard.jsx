@@ -49,6 +49,7 @@ import { PageHeader } from '../components';
 import { PatientSelector } from '../components/medical';
 import { GlobalSearch } from '../components/common';
 import { InvitationNotifications } from '../components/dashboard';
+import UpcomingSchedule from '../components/dashboard/UpcomingSchedule';
 import { apiService } from '../services/api';
 import frontendLogger from '../services/frontendLogger';
 import logger from '../services/logger';
@@ -974,6 +975,9 @@ const Dashboard = () => {
                   })}
                 </Stack>
               </Card>
+              {/* Upcoming appointments and due dates */}
+              <UpcomingSchedule patientId={currentPatient?.id} />
+
               {/* Invitation Notifications */}
               <InvitationNotifications />
 
